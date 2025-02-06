@@ -19,6 +19,121 @@
       overflow-x: hidden;
     }
 
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Grey out effect */
+      display: flex; /* Enable flexbox */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      z-index: 1001; /* Make sure it stays behind the popup */
+    }
+
+    .popup {
+      width: 90%;
+      max-width: 600px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+      position: fixed; /* Make the popup fixed */
+      top: 50%; /* Position from the top */
+      left: 50%; /* Position from the left */
+      transform: translate(-50%, -50%); /* Center the popup using translate */
+      z-index: 1002; /* Ensure it stays on top of the overlay */
+    }
+
+    body.dark-mode .popup {
+      background-color: #1f1f1f;
+      color: white;
+    }
+
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .popup-header h2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #6B09FF;
+    }
+
+    .close-btn {
+      background-color: transparent;
+      border: none;
+      font-size: 24px;
+      color: #6B09FF;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #BB00FF;
+    }
+
+    .popup-content {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    body.dark-mode .popup-content {
+      color: #c3c3c3;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    .button-container button {
+      padding: 12px 20px;
+      background-color: #00E46A;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .button-container button:hover {
+      background-color: #00cc5a;
+    }
+
+    /* Dark Mode */
+    body.dark-mode .button-container button {
+      background-color: #00cc5a;
+    }
+
+    /* Responsive Styles */
+    @media screen and (max-width: 600px) {
+      .popup {
+        padding: 15px;
+      }
+
+      .popup-header h2 {
+        font-size: 20px;
+      }
+
+      .popup-content {
+        font-size: 14px;
+      }
+
+      .button-container button {
+        font-size: 14px;
+      }
+    }
+
 
     /* start dark mode */
 
@@ -341,7 +456,8 @@
       color: black;
     }
     .off {
-      color: grey;
+      color: grey; 
+        filter: grayscale(100%);
     }
     
     /* Fixed Hamburger (outside sidebar) for mobile when sidebar is closed */
@@ -393,9 +509,129 @@
         display: flex;
       }
     }
+
+    /* Feedback Popup Styles */
+    .feedback-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 2000;
+      display: none;
+    }
+    .feedback-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      padding: 20px;
+      border-radius: 4px;
+      width: 90%;
+      max-width: 500px;
+      z-index: 2001;
+      display: none;
+    }
+    .feedback-popup .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .feedback-popup .popup-header h2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #6B09FF;
+    }
+    .feedback-popup .close-btn {
+      background-color: transparent;
+      border: none;
+      font-size: 24px;
+      color: #6B09FF;
+      cursor: pointer;
+    }
+    .feedback-popup form {
+      display: flex;
+      flex-direction: column;
+    }
+    .feedback-popup form label {
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    .feedback-popup form input,
+    .feedback-popup form select,
+    .feedback-popup form textarea {
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .feedback-popup form button[type="submit"] {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #00E46A;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .feedback-popup form button[type="submit"]:hover {
+      background-color: #00cc5a;
+    }
+
+    /* Dark Mode Styling for Feedback Popup */
+    body.dark-mode .feedback-popup {
+      background-color: #1f1f1f;
+      color: #fff;
+    }
+    body.dark-mode .feedback-popup .popup-header h2 {
+      color: #6B09FF;
+    }
+    body.dark-mode .feedback-popup .close-btn {
+      color: #6B09FF;
+    }
+    body.dark-mode .feedback-popup form label {
+      color: #fff;
+    }
+    body.dark-mode .feedback-popup form input,
+    body.dark-mode .feedback-popup form textarea,
+    body.dark-mode .feedback-popup form select {
+      background-color: #2a2a2a;
+      border: 1px solid #444;
+      color: #fff;
+    }
+    body.dark-mode .feedback-popup form button[type="submit"] {
+      background-color: #00cc5a;
+      color: #fff;
+      border: none;
+    }
+    body.dark-mode .feedback-popup form button[type="submit"]:hover {
+      background-color: #00b359;
+    }
+
   </style>
 </head>
 <body>
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Popup Content -->
+  <div class="popup">
+    <div class="popup-header">
+      <h2>Welcome to the BrewLog Demo</h2>
+    </div>
+    <div class="popup-content">
+      <p>This is a demo version of the app. Your data will not be saved, and no account is required. Feel free to explore!</p>
+    </div>
+    <div class="button-container">
+      <button onclick="closePopup()">Accept</button>
+    </div>
+  </div>
+
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
@@ -410,10 +646,10 @@
     <button onclick="location.href='addTasting.html';"><span class="plus-icon">+</span> Add New Tasting</button>
     <nav>
       <a href="#">Home</a>
-      <a href="#">My Tastings</a>
+      <a href="myTastings.html">My Tastings</a>
       <a href="#">Coffee Map</a>
       <div class="lineBreak"></div>
-      <a href="#">Feedback</a>
+      <a href="#" onclick="openFeedback(); return false;">Feedback</a>
       <a href="#">Help Center</a>
       <a href="#">Contact Us</a>
     </nav>
@@ -438,7 +674,7 @@
         <p style="color: #00E46A; margin-top: 20px;">+</p>
         <h3 style="margin-bottom: 50px;">Add New Tasting</h3>
       </div>
-      <div class="topCard pressable">
+      <div class="topCard pressable" id="myTastings">
         <p>☕</p>
         <h3>My Tastings</h3>
       </div>
@@ -492,40 +728,109 @@
     <div class="bar"></div>
     <div class="bar"></div>
   </div>
+
+  <!-- Feedback Popup and Overlay -->
+  <div class="feedback-overlay" id="feedbackOverlay"></div>
+  <div class="feedback-popup" id="feedbackPopup">
+    <div class="popup-header">
+      <h2>Feedback</h2>
+      <button class="close-btn" onclick="closeFeedback()">×</button>
+    </div>
+    <form id="feedbackForm">
+      <label for="feedbackName">Name</label>
+      <input type="text" id="feedbackName" name="feedbackName" required>
+      
+      <label for="feedbackEmail">Email</label>
+      <input type="email" id="feedbackEmail" name="feedbackEmail" required>
+      
+      <label for="feedbackType">Feedback Type</label>
+      <select id="feedbackType" name="feedbackType">
+        <option value="bug">Bug Report</option>
+        <option value="general">General Feedback</option>
+        <option value="feature">Feature Request</option>
+      </select>
+      
+      <label for="feedbackMessage">Feedback</label>
+      <textarea id="feedbackMessage" name="feedbackMessage" rows="4" required></textarea>
+      
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </div>
+
   
-<script>
+  <script>
+    // Close the popup and hide the overlay when the user clicks the "Accept" button
+    function closePopup() {
+      document.querySelector('.popup').style.display = 'none'; // Hide the popup
+      document.querySelector('#overlay').style.display = 'none'; // Hide the overlay
+
+      // Mark the popup as closed in localStorage so it won't show up again
+      localStorage.setItem('popupClosed', 'true');
+    }
+  
+    // Show the popup and overlay on page load, but only if it hasn't been shown before
+    window.onload = function() {
+      // Check if the popup has been closed before using localStorage
+      const checkPop = localStorage.getItem('popupClosed')
+      console.log(checkPop)
+      if (checkPop != 'true'){
+        document.querySelector('.popup').style.display = 'block'; // Show the popup
+        document.querySelector('#overlay').style.display = 'block'; // Show the overlay
+      }
+    };
+  
     function toggleMenu() {
-        const sidebar = document.getElementById('sidebar');
-        sidebar.classList.toggle('visible');
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('visible');
     }
 
+    // Open Feedback Popup
+    function openFeedback() {
+      document.getElementById('feedbackOverlay').style.display = 'block';
+      document.getElementById('feedbackPopup').style.display = 'block';
+    }
+    // Close Feedback Popup
+    function closeFeedback() {
+      document.getElementById('feedbackOverlay').style.display = 'none';
+      document.getElementById('feedbackPopup').style.display = 'none';
+    }
+  
     // Ensure button exists before adding event listener
     document.addEventListener("DOMContentLoaded", function () {
-        const addNewTastingBtn = document.getElementById('addNewTasting');
-        if (addNewTastingBtn) {
-            addNewTastingBtn.addEventListener('click', function () {
-                window.location.href = 'addTasting.html'; // Replace with your target URL
-            });
-        }
+      const addNewTastingBtn = document.getElementById('addNewTasting');
+      if (addNewTastingBtn) {
+        addNewTastingBtn.addEventListener('click', function () {
+          window.location.href = 'addTasting.html'; // Replace with your target URL
+        });
+      }
 
-        // Apply dark mode if it was enabled previously
-        if (localStorage.getItem("darkMode") === "enabled") {
-            document.body.classList.add("dark-mode");
-        }
+      const addmyTastingsBtn = document.getElementById('myTastings');
+      if (addmyTastingsBtn) {
+        addmyTastingsBtn.addEventListener('click', function () {
+          window.location.href = 'myTastings.html'; // Replace with your target URL
+        });
+      }
+  
+      // Apply dark mode if it was enabled previously
+      if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+      }
     });
-
+  
     function toggleTheme() {
-        const body = document.body;
-        body.classList.toggle('dark-mode');
-
-        // Save theme preference in localStorage
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('darkMode', 'enabled');
-        } else {
-            localStorage.setItem('darkMode', 'disabled');
-        }
+      const body = document.body;
+      body.classList.toggle('dark-mode');
+  
+      // Save theme preference in localStorage
+      if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        localStorage.setItem('darkMode', 'disabled');
+      }
     }
 </script>
+
+  
 
 </body>
 </html>
