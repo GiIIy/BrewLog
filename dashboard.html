@@ -18,6 +18,60 @@
       display: flex;
       overflow-x: hidden;
     }
+
+
+    /* start dark mode */
+
+    body.dark-mode{
+      background-color: #121212;
+      color: #fff;
+    }
+
+    body.dark-mode .sidebar{
+      background-color: #1f1f1f;
+      border-color: #444;
+    }
+
+    body.dark-mode .sidebar nav a{
+      color: white;
+    }
+
+    body.dark-mode .sidebar nav a:hover{
+      background-color: #333;
+    }
+
+
+    body.dark-mode .topCard{
+      background-color: #1f1f1f;
+      color: white;
+    }
+
+    body.dark-mode .topCard.pressable:hover{
+      background-color: #333;
+    }
+
+    
+    body.dark-mode .bottomCard{
+      background-color:#1f1f1f;
+      color: white; 
+    }
+
+
+    .theme-toggle {
+      cursor: pointer;
+      padding: 5px;
+      background-color: #6B09FF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+    .theme-toggle:hover {
+      background-color: #4f00e6;
+    }
+
+    /* end dark mode */
     
     /* Sidebar */
     .sidebar {
@@ -32,6 +86,9 @@
       transition: transform 0.3s ease;
       z-index: 1000;
     }
+
+
+
     /* On mobile, sidebar is off-canvas by default */
     @media screen and (max-width: 1150px) {
       .sidebar {
@@ -365,6 +422,7 @@
   <!-- Main Content -->
   <div class="main-content">
     <div class="top-nav">
+      <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
       <div class="profile">
         <div>
           <span>Jayden Gill</span>
@@ -435,16 +493,39 @@
     <div class="bar"></div>
   </div>
   
-  <script>
+<script>
     function toggleMenu() {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('visible');
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('visible');
     }
 
-    document.getElementById('addNewTasting').addEventListener('click', function() {
-      window.location.href = 'addTasting.html'; // Replace with your target URL
+    // Ensure button exists before adding event listener
+    document.addEventListener("DOMContentLoaded", function () {
+        const addNewTastingBtn = document.getElementById('addNewTasting');
+        if (addNewTastingBtn) {
+            addNewTastingBtn.addEventListener('click', function () {
+                window.location.href = 'addTasting.html'; // Replace with your target URL
+            });
+        }
+
+        // Apply dark mode if it was enabled previously
+        if (localStorage.getItem("darkMode") === "enabled") {
+            document.body.classList.add("dark-mode");
+        }
     });
 
-  </script>
+    function toggleTheme() {
+        const body = document.body;
+        body.classList.toggle('dark-mode');
+
+        // Save theme preference in localStorage
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            localStorage.setItem('darkMode', 'disabled');
+        }
+    }
+</script>
+
 </body>
 </html>
