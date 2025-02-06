@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrewLog Dashboard - Add Tasting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Global Styles */
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    }
+    body {
+    background-color: #f8f8f8;
+    display: flex;
+    overflow-x: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+    width: 270px;
+    background-color: #fff;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    }
+    @media screen and (max-width: 1150px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    .sidebar.visible {
+        transform: translateX(0);
+    }
+    }
+    .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 35px;
+    }
+    .sidebar h1 {
+    font-size: 20px;
+    }
+    .sidebar h1 a {
+        color: #6B09FF;
+        text-decoration: none;
+    }
+
+    .sidebar-hamburger {
+    display: none;
+    cursor: pointer;
+    width: 24px;
+    height: 18px;
+    flex-direction: column;
+    justify-content: space-between;
+    }
+    .sidebar-hamburger .bar {
+    height: 3.5px;
+    background-color: #6B09FF;
+    border-radius: 2px;
+    }
+    .sidebar button {
+    background-color: #00E46A;
+    color: white;
+    border: none;
+    padding: 13px;
+    width: 100%;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    .sidebar button:hover {
+    background-color: #00cc5a;
+    }
+    .sidebar nav a {
+    display: block;
+    padding: 10px 0;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    }
+    .sidebar nav a:hover {
+    background-color: #eee;
+    border-radius: 5px;
+    }
+
+    /* Main Content */
+    .main-content {
+    flex: 1;
+    padding: 20px;
+    margin-left: 270px;
+    transition: margin-left 0.3s ease;
+    }
+
+    /* Back button container aligned with the box */
+    .back-container {
+    max-width: 1200px;
+    margin: 20px auto 10px auto;
+    text-align: left;
+    }
+    .back-container button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #6B09FF;
+    cursor: pointer;
+    font-weight: bold;
+    }
+
+    /* Top Navigation */
+    .top-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    }
+    .profile {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    }
+    .profile p {
+    font-size: 8px;
+    color: #c3c3c3;
+    margin-left: 5px;
+    }
+    .profile-image {
+    width: 35px;
+    height: 35px;
+    background-color: #00E46A;
+    border-radius: 50%;
+    margin-left: 10px;
+    }
+
+    /* Fixed Hamburger for Mobile */
+    .fixed-hamburger {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1100;
+    display: none;
+    cursor: pointer;
+    width: 24px;
+    height: 18px;
+    flex-direction: column;
+    justify-content: space-between;
+    }
+    .fixed-hamburger .bar {
+    height: 3.5px;
+    background-color: #6B09FF;
+    border-radius: 2px;
+    }
+
+    .plus-icon {
+      font-size: 36px;
+      margin-right: 10px;
+      line-height: 0;
+    }
+
+    .lineBreak {
+    border-bottom: 1px solid #ddd;
+    margin: 10px 0;
+    }
+    @media screen and (max-width: 1150px) {
+    .main-content {
+        margin-left: 0;
+    }
+    .fixed-hamburger {
+        display: flex;
+    }
+    .sidebar.visible ~ .fixed-hamburger {
+        display: none;
+    }
+    .sidebar.visible .sidebar-hamburger {
+        display: flex;
+    }
+    }
+
+    /* ======================= Add Tasting Page Styles ======================= */
+    .add-tasting-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    padding-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    }
+    .add-tasting-tabs {  
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 20px;
+    }
+    .add-tasting-tabs button {
+    flex: 1;
+    background-color: #6B09FF;
+    color: white;
+    border: none;
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+    }
+    .add-tasting-tabs button:hover {
+    background-color: #5a08c7;
+    }
+
+    .content-wrapper {
+    display: flex;
+    gap: 20px;
+    }
+
+    .form-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    }
+    .side-section {
+    flex: 1;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    }
+
+    /* Form grids: two groups of 2x2 fields */
+    .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    }
+    .form-group {
+    display: flex;
+    flex-direction: column;
+    }
+    .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+    }
+    .form-group input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    }
+
+    /* Full-width info row */
+    .full-row {
+    display: flex;
+    flex-direction: column;
+    }
+    .full-row label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+    }
+    .full-row textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 100px;
+    }
+
+    /* Image upload area */
+    .image-upload {
+    width: 100%;
+    margin-top: 22px;
+    height: 336px;
+    border: 2px dashed #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #666;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+    padding: 0 10px;
+    }
+    @media screen and (max-width: 768px) {
+    .add-tasting-container {
+        flex-direction: column;
+        padding: 20px;  /* Adjust padding */
+    }
+    .side-section {
+        width: 100%;
+    }
+    .image-upload {
+        height: 180px;
+        font-size: 14px;
+    }
+    .add-tasting-tabs button {
+        font-size: 12px;
+        padding: 12px;
+    }
+    .content-wrapper {
+        flex-direction: column;
+    }
+    .form-section {
+        flex: 1;
+    }
+    }
+
+    /* Buttons */
+    .add-tasting-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    }
+    .add-tasting-buttons button {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    flex: 1;
+    }
+    .save {
+    background-color: #00E46A;
+    color: white;
+    border: none;
+    }
+    .discard {
+    background-color: #fff;
+    border: 1px solid #00E46A;
+    color: #00E46A;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h1><a href="dashboard.html">BrewLog</a></h1>
+      <!-- Hamburger inside sidebar header (only shows on mobile when sidebar is open) -->
+      <div class="sidebar-hamburger" onclick="toggleMenu()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+    <button><span class="plus-icon">+</span> Add New Tasting</button>
+    <nav>
+      <a href="dashboard.html">Home</a>
+      <a href="#">My Tastings</a>
+      <a href="#">Coffee Map</a>
+      <div class="lineBreak"></div>
+      <a href="#">Feedback</a>
+      <a href="#">Help Center</a>
+      <a href="#">Contact Us</a>
+    </nav>
+  </div>
+  
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="top-nav">
+      <div class="profile">
+        <div>
+          <span>Jayden Gill</span>
+          <p>Coffee Master</p>
+        </div>
+        <div class="profile-image"></div>
+      </div>
+    </div>
+    
+    <!-- Back Button Aligned with the Box -->
+    <div class="back-container">
+      <button onclick="window.history.back();">&#8592; Back</button>
+    </div>
+    
+    <!-- Add Tasting Page Content -->
+    <div class="add-tasting-container">
+        <!-- Tab buttons expanded evenly -->
+        <div class="add-tasting-tabs">
+            <button class="active">Coffee Information</button>
+            <button>Coffee Preparation</button>
+            <button>Tasting Notes</button>
+        </div>
+
+        <div class="content-wrapper">  
+            <!-- Left side: Form -->
+            <div class="form-section">
+                
+                <!-- First group (2x2 grid) -->
+                <div class="form-grid">
+                <div class="form-group">
+                    <label for="coffee-name">Coffee Name</label>
+                    <input type="text" id="coffee-name" placeholder="Enter coffee name">
+                </div>
+                <div class="form-group">
+                    <label for="brand-name">Brand Name</label>
+                    <input type="text" id="brand-name" placeholder="Enter brand name">
+                </div>
+                <div class="form-group">
+                    <label for="origin">Origin (Country)</label>
+                    <input type="text" id="origin" placeholder="Country of origin">
+                </div>
+                <div class="form-group">
+                    <label for="processing">Processing Method</label>
+                    <input type="text" id="processing" placeholder="E.g., Washed, Natural">
+                </div>
+                </div>
+                
+                <!-- Second group (2x2 grid) -->
+                <div class="form-grid">
+                <div class="form-group">
+                    <label for="roast">Roast</label>
+                    <input type="text" id="roast" placeholder="Enter roast level">
+                </div>
+                <div class="form-group">
+                    <label for="bean">Bean Type</label>
+                    <input type="text" id="bean" placeholder="E.g., Arabica, Robusta">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="text" id="price" placeholder="Enter price">
+                </div>
+                <div class="form-group">
+                    <label for="links">Link(s)</label>
+                    <input type="text" id="links" placeholder="Paste URL(s) here">
+                </div>
+                </div>
+                
+                <!-- More Information row (full width) -->
+                <div class="full-row">
+                <label for="more-info">More Information</label>
+                <textarea id="more-info" placeholder="Additional details..."></textarea>
+                </div>
+            </div>
+            
+            <!-- Right side: Image upload and buttons -->
+            <div class="side-section">
+                <div class="image-upload" onclick="alert('Image upload functionality goes here!');">
+                + Insert Image
+                </div>
+                <div class="add-tasting-buttons">
+                    <button type="submit" class="save">Save Coffee</button>
+                    <button type="button" class="discard" onclick="window.history.back();">Discard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <!-- Fixed Hamburger for Mobile -->
+  <div class="fixed-hamburger" id="fixedHamburger" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+  
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('visible');
+    }
+
+  </script>
+</body>
+</html>
