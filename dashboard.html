@@ -134,7 +134,6 @@
       }
     }
 
-
     /* start dark mode */
 
     body.dark-mode{
@@ -155,7 +154,6 @@
       background-color: #333;
     }
 
-
     body.dark-mode .topCard{
       background-color: #1f1f1f;
       color: white;
@@ -164,13 +162,11 @@
     body.dark-mode .topCard.pressable:hover{
       background-color: #333;
     }
-
     
     body.dark-mode .bottomCard{
       background-color:#1f1f1f;
       color: white; 
     }
-
 
     .theme-toggle {
       cursor: pointer;
@@ -201,8 +197,6 @@
       transition: transform 0.3s ease;
       z-index: 1000;
     }
-
-
 
     /* On mobile, sidebar is off-canvas by default */
     @media screen and (max-width: 1150px) {
@@ -388,7 +382,7 @@
     }
     .bottomCard {
       background-color: white;
-      padding: 20px;  /* reduced default padding */
+      padding: 20px;
       border-radius: 4px;
       text-align: center;
       border: 1px solid #ddd;
@@ -398,21 +392,20 @@
     }
     .bottomCard.numbered {
       text-align: left;
-      padding-bottom: 10px; /* Added padding to ensure space at the bottom */
+      padding-bottom: 10px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end; /* Aligns text at the bottom */
+      justify-content: flex-end;
     }
     .bottomCard.numbered p {
       font-size: 28px;
       font-weight: bold;
       color: #BB00FF;
       margin-bottom: 5px;
-      margin-left: 10px; /* Ensures text starts from the left */
+      margin-left: 10px;
     }
-
     
-    /* Fav Coffee Card (Responsive Scaling Updated) */
+    /* Fav Coffee Card */
     .bottomCard.favCoffee {
       padding: 1rem;
       display: flex;
@@ -425,19 +418,17 @@
     .bottomCard.favCoffee h3 {
       margin-top: 0.75rem;
       color: #BB00FF;
-      /* Scale moderately using clamp */
       font-size: clamp(0.9rem, 2vw, 1.2rem);
     }
     .bottomCard.favCoffee p {
       font-weight: bold;
-      /* Scale moderately using clamp */
       font-size: clamp(0.65rem, 1vw, 0.8rem);
       margin: 0.5rem 0;
     }
     .bottomCard.favCoffee p span {
       font-size: clamp(0.75rem, 1.2vw, 0.9rem);
     }
-    /* For the rating system, ensure a minimum width so it doesn’t shrink too much on mobile */
+    /* Rating System */
     .ratingSys {
       display: flex;
       justify-content: center;
@@ -457,16 +448,16 @@
     }
     .off {
       color: grey; 
-        filter: grayscale(100%);
+      filter: grayscale(100%);
     }
     
-    /* Fixed Hamburger (outside sidebar) for mobile when sidebar is closed */
+    /* Fixed Hamburger (for mobile) */
     .fixed-hamburger {
       position: fixed;
       top: 10px;
       left: 10px;
       z-index: 1100;
-      display: none; /* visible on mobile only */
+      display: none;
       cursor: pointer;
       width: 24px;
       height: 18px;
@@ -492,19 +483,15 @@
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         margin: 15px 10px;
       }
-      /* Reduce bottomCard padding on mobile */
       .bottomCard {
         padding: 10px;
       }
-      /* Show fixed hamburger when sidebar is hidden */
       .fixed-hamburger {
         display: flex;
       }
-      /* When sidebar is visible, hide fixed hamburger */
       .sidebar.visible ~ .fixed-hamburger {
         display: none;
       }
-      /* In the sidebar header, show the hamburger (positioned to the right) when sidebar is visible */
       .sidebar.visible .sidebar-hamburger {
         display: flex;
       }
@@ -612,14 +599,13 @@
     body.dark-mode .feedback-popup form button[type="submit"]:hover {
       background-color: #00b359;
     }
-
   </style>
 </head>
 <body>
-  <!-- Overlay -->
+  <!-- Overlay for Welcome Popup -->
   <div class="overlay" id="overlay"></div>
 
-  <!-- Popup Content -->
+  <!-- Welcome Popup Content -->
   <div class="popup">
     <div class="popup-header">
       <h2>Welcome to the BrewLog Demo</h2>
@@ -636,7 +622,7 @@
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <h1>BrewLog</h1>
-      <!-- Hamburger inside sidebar header (only shows on mobile when sidebar is open) -->
+      <!-- Hamburger inside sidebar header (for mobile when sidebar is open) -->
       <div class="sidebar-hamburger" onclick="toggleMenu()">
         <div class="bar"></div>
         <div class="bar"></div>
@@ -650,8 +636,8 @@
       <a href="#">Coffee Map</a>
       <div class="lineBreak"></div>
       <a href="#" onclick="openFeedback(); return false;">Feedback</a>
-      <a href="#">Help Center</a>
-      <a href="#">Contact Us</a>
+      <a href="#" onclick="showComingSoon(); return false;">Help Center</a>
+      <a href="#" onclick="showComingSoon(); return false;">Contact Us</a>
     </nav>
   </div>
   
@@ -757,25 +743,35 @@
     </form>
   </div>
 
+  <!-- Coming Soon Popup and Overlay -->
+  <div class="overlay" id="comingSoonOverlay" style="display:none;"></div>
+  <div class="popup" id="comingSoonPopup" style="display:none;">
+    <div class="popup-header">
+      <h2>Coming Soon</h2>
+      <button class="close-btn" onclick="closeComingSoon()">×</button>
+    </div>
+    <div class="popup-content">
+      <p>Feature coming soon!</p>
+    </div>
+    <div class="button-container">
+      <button onclick="closeComingSoon()">OK</button>
+    </div>
+  </div>
   
   <script>
-    // Close the popup and hide the overlay when the user clicks the "Accept" button
+    // Close the Welcome popup and hide the overlay when the user clicks "Accept"
     function closePopup() {
-      document.querySelector('.popup').style.display = 'none'; // Hide the popup
-      document.querySelector('#overlay').style.display = 'none'; // Hide the overlay
-
-      // Mark the popup as closed in localStorage so it won't show up again
+      document.querySelector('.popup').style.display = 'none';
+      document.querySelector('#overlay').style.display = 'none';
       localStorage.setItem('popupClosed', 'true');
     }
   
-    // Show the popup and overlay on page load, but only if it hasn't been shown before
+    // Show the Welcome popup on page load if not closed before
     window.onload = function() {
-      // Check if the popup has been closed before using localStorage
-      const checkPop = localStorage.getItem('popupClosed')
-      console.log(checkPop)
+      const checkPop = localStorage.getItem('popupClosed');
       if (checkPop != 'true'){
-        document.querySelector('.popup').style.display = 'block'; // Show the popup
-        document.querySelector('#overlay').style.display = 'block'; // Show the overlay
+        document.querySelector('.popup').style.display = 'block';
+        document.querySelector('#overlay').style.display = 'flex';
       }
     };
   
@@ -786,7 +782,7 @@
 
     // Open Feedback Popup
     function openFeedback() {
-      document.getElementById('feedbackOverlay').style.display = 'block';
+      document.getElementById('feedbackOverlay').style.display = 'flex';
       document.getElementById('feedbackPopup').style.display = 'block';
     }
     // Close Feedback Popup
@@ -795,23 +791,22 @@
       document.getElementById('feedbackPopup').style.display = 'none';
     }
   
-    // Ensure button exists before adding event listener
+    // Add event listeners for Tasting buttons
     document.addEventListener("DOMContentLoaded", function () {
       const addNewTastingBtn = document.getElementById('addNewTasting');
       if (addNewTastingBtn) {
         addNewTastingBtn.addEventListener('click', function () {
-          window.location.href = 'addTasting.html'; // Replace with your target URL
+          window.location.href = 'addTasting.html';
         });
       }
 
       const addmyTastingsBtn = document.getElementById('myTastings');
       if (addmyTastingsBtn) {
         addmyTastingsBtn.addEventListener('click', function () {
-          window.location.href = 'myTastings.html'; // Replace with your target URL
+          window.location.href = 'myTastings.html';
         });
       }
   
-      // Apply dark mode if it was enabled previously
       if (localStorage.getItem("darkMode") === "enabled") {
         document.body.classList.add("dark-mode");
       }
@@ -820,17 +815,24 @@
     function toggleTheme() {
       const body = document.body;
       body.classList.toggle('dark-mode');
-  
-      // Save theme preference in localStorage
       if (body.classList.contains('dark-mode')) {
         localStorage.setItem('darkMode', 'enabled');
       } else {
         localStorage.setItem('darkMode', 'disabled');
       }
     }
-</script>
 
+    // New functions for the Coming Soon popup
+    function showComingSoon() {
+      document.getElementById('comingSoonOverlay').style.display = 'flex';
+      document.getElementById('comingSoonPopup').style.display = 'block';
+    }
+    
+    function closeComingSoon() {
+      document.getElementById('comingSoonOverlay').style.display = 'none';
+      document.getElementById('comingSoonPopup').style.display = 'none';
+    }
+  </script>
   
-
 </body>
 </html>

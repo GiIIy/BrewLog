@@ -158,6 +158,7 @@
       font-weight: bold;
       margin: 0 30px 20px;
       display: inline-block;
+      cursor: pointer;
     }
     .page-title {
       margin: 0 30px 20px;
@@ -335,6 +336,7 @@
       .main-content {
         margin-left: 0;
       }
+      
       .fixed-hamburger {
         display: flex;
       }
@@ -421,6 +423,122 @@
       border-bottom: 1px solid #ddd;
       margin: 10px 0;
     }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Grey out effect */
+      display: flex; /* Enable flexbox */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      z-index: 1001; /* Make sure it stays behind the popup */
+    }
+
+    .popup {
+      width: 90%;
+      max-width: 600px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 4px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+      position: fixed; /* Make the popup fixed */
+      top: 50%; /* Position from the top */
+      left: 50%; /* Position from the left */
+      transform: translate(-50%, -50%); /* Center the popup using translate */
+      z-index: 1002; /* Ensure it stays on top of the overlay */
+    }
+
+    body.dark-mode .popup {
+      background-color: #1f1f1f;
+      color: white;
+    }
+
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .popup-header h2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #6B09FF;
+    }
+
+    .close-btn {
+      background-color: transparent;
+      border: none;
+      font-size: 24px;
+      color: #6B09FF;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      color: #BB00FF;
+    }
+
+    .popup-content {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    body.dark-mode .popup-content {
+      color: #c3c3c3;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    .button-container button {
+      padding: 12px 20px;
+      background-color: #00E46A;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .button-container button:hover {
+      background-color: #00cc5a;
+    }
+
+    /* Dark Mode */
+    body.dark-mode .button-container button {
+      background-color: #00cc5a;
+    }
+
+    /* Responsive Styles */
+    @media screen and (max-width: 600px) {
+      .popup {
+        padding: 15px;
+      }
+
+      .popup-header h2 {
+        font-size: 20px;
+      }
+
+      .popup-content {
+        font-size: 14px;
+      }
+
+      .button-container button {
+        font-size: 14px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -445,8 +563,8 @@
       <div class="lineBreak"></div>
       <!-- Clicking "Feedback" opens the popup -->
       <a href="#" onclick="openFeedback(); return false;">Feedback</a>
-      <a href="#">Help Center</a>
-      <a href="#">Contact Us</a>
+      <a href="#" onclick="showComingSoon(); return false;">Help Center</a>
+      <a href="#" onclick="showComingSoon(); return false;">Contact Us</a>
     </nav>
   </div>
 
@@ -465,7 +583,7 @@
     </div>
 
     <!-- My Tastings Content -->
-    <a href="dashboard.html" class="back-btn">&#8592; Back to Dashboard</a>
+    <a onclick="window.history.back();" class="back-btn">&#8592; Back</a>
     <h2 class="page-title">My Tastings</h2>
     
     <!-- Search & Sort -->
@@ -559,6 +677,21 @@
     </form>
   </div>
 
+  <!-- Coming Soon Popup and Overlay -->
+  <div class="overlay" id="comingSoonOverlay" style="display:none;"></div>
+  <div class="popup" id="comingSoonPopup" style="display:none;">
+    <div class="popup-header">
+      <h2>Coming Soon</h2>
+      <button class="close-btn" onclick="closeComingSoon()">×</button>
+    </div>
+    <div class="popup-content">
+      <p>Feature coming soon!</p>
+    </div>
+    <div class="button-container">
+      <button onclick="closeComingSoon()">OK</button>
+    </div>
+  </div>
+
   <script>
     // Toggle Sidebar for Mobile
     function toggleMenu() {
@@ -590,6 +723,18 @@
       document.getElementById('feedbackOverlay').style.display = 'none';
       document.getElementById('feedbackPopup').style.display = 'none';
     }
+
+    // New functions for the Coming Soon popup
+    function showComingSoon() {
+      document.getElementById('comingSoonOverlay').style.display = 'flex';
+      document.getElementById('comingSoonPopup').style.display = 'block';
+    }
+    
+    function closeComingSoon() {
+      document.getElementById('comingSoonOverlay').style.display = 'none';
+      document.getElementById('comingSoonPopup').style.display = 'none';
+    }
+
   </script>
 </body>
 </html>
