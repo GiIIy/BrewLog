@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,15 +14,18 @@
       box-sizing: border-box;
       font-family: 'Montserrat', sans-serif;
     }
+
     body {
       background-color: #f8f8f8;
       display: flex;
       overflow-x: hidden;
     }
+
     body.dark-mode {
       background-color: #121212;
       color: #fff;
     }
+
     /* Sidebar */
     .sidebar {
       width: 270px;
@@ -35,20 +39,25 @@
       transition: transform 0.3s ease;
       z-index: 1000;
     }
+
     body.dark-mode .sidebar {
       background-color: #1f1f1f;
       border-color: #444;
     }
+
     .sidebar-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 35px;
     }
+
     .sidebar h1 {
       color: #6B09FF;
       font-size: 20px;
+      cursor: pointer;
     }
+
     .sidebar-hamburger {
       display: none;
       cursor: pointer;
@@ -57,11 +66,13 @@
       flex-direction: column;
       justify-content: space-between;
     }
+
     .sidebar-hamburger .bar {
       height: 3.5px;
       background-color: #6B09FF;
       border-radius: 2px;
     }
+
     .sidebar button {
       background-color: #00E46A;
       color: white;
@@ -77,14 +88,17 @@
       align-items: center;
       justify-content: center;
     }
+
     .sidebar button:hover {
       background-color: #00cc5a;
     }
+
     .plus-icon {
       font-size: 36px;
       margin-right: 10px;
       line-height: 0;
     }
+
     .sidebar nav a {
       display: block;
       padding: 10px 0;
@@ -94,16 +108,20 @@
       margin-bottom: 15px;
       padding-left: 10px;
     }
+
     body.dark-mode .sidebar nav a {
       color: #fff;
     }
+
     .sidebar nav a:hover {
       background-color: #eee;
       border-radius: 5px;
     }
+
     body.dark-mode .sidebar nav a:hover {
       background-color: #333;
     }
+
     /* Main Content */
     .main-content {
       flex: 1;
@@ -111,6 +129,7 @@
       margin-left: 270px;
       transition: margin-left 0.3s ease;
     }
+
     /* Top Navigation */
     .top-nav {
       display: flex;
@@ -119,6 +138,7 @@
       margin-bottom: 20px;
       padding: 0 10px;
     }
+
     .theme-toggle {
       cursor: pointer;
       padding: 5px;
@@ -129,9 +149,11 @@
       font-size: 14px;
       margin-right: 10px;
     }
+
     .theme-toggle:hover {
       background-color: #4f00e6;
     }
+
     .profile {
       display: flex;
       align-items: center;
@@ -139,11 +161,13 @@
       font-size: 14px;
       cursor: pointer;
     }
+
     .profile p {
       font-size: 8px;
       color: #c3c3c3;
       margin-left: 5px;
     }
+
     .profile-image {
       width: 35px;
       height: 35px;
@@ -151,6 +175,7 @@
       border-radius: 50%;
       margin-left: 10px;
     }
+
     /* My Tastings Page Content */
     .back-btn {
       text-decoration: none;
@@ -160,11 +185,13 @@
       display: inline-block;
       cursor: pointer;
     }
+
     .page-title {
       margin: 0 30px 20px;
       font-size: 24px;
       font-weight: 700;
     }
+
     .tastings-header {
       display: flex;
       gap: 15px;
@@ -172,6 +199,7 @@
       margin: 0 30px 20px;
       flex-wrap: wrap;
     }
+
     .search-bar {
       flex: 1;
       padding: 8px 12px;
@@ -179,6 +207,7 @@
       border: 1px solid #ddd;
       border-radius: 4px;
     }
+
     .search-sort button {
       padding: 10px 16px;
       background-color: #00E46A;
@@ -190,9 +219,11 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
+
     .search-sort button:hover {
       background-color: #00cc5a;
     }
+
     /* Tasting Cards */
     .tastings-list {
       display: grid;
@@ -200,6 +231,7 @@
       gap: 20px;
       margin: 0 30px 30px;
     }
+
     .tasting-card {
       background-color: #fff;
       border: 1px solid #ddd;
@@ -207,50 +239,58 @@
       padding: 20px;
       transition: background-color 0.3s ease;
     }
+
     body.dark-mode .tasting-card {
       background-color: #1f1f1f;
       border-color: #444;
     }
+
     .tasting-card:hover {
       background-color: #f8f8f8;
     }
+
     body.dark-mode .tasting-card:hover {
       background-color: #333;
     }
+
     /* Dark Mode Feedback Popup Styles */
     body.dark-mode .feedback-popup {
-    background-color: #1f1f1f; /* dark background */
-    color: #fff;
+      background-color: #1f1f1f;
+      /* dark background */
+      color: #fff;
     }
 
     body.dark-mode .feedback-popup .popup-header h2 {
-    color: #6B09FF; /* highlight header color */
+      color: #6B09FF;
+      /* highlight header color */
     }
 
     body.dark-mode .feedback-popup .close-btn {
-    color: #6B09FF;
+      color: #6B09FF;
     }
 
     body.dark-mode .feedback-popup form label {
-    color: #fff;
+      color: #fff;
     }
 
     body.dark-mode .feedback-popup form input,
     body.dark-mode .feedback-popup form textarea,
     body.dark-mode .feedback-popup form select {
-    background-color: #2a2a2a;  /* slightly lighter than the popup background */
-    border: 1px solid #444;
-    color: #fff;
+      background-color: #2a2a2a;
+      /* slightly lighter than the popup background */
+      border: 1px solid #444;
+      color: #fff;
     }
 
     body.dark-mode .feedback-popup form button[type="submit"] {
-    background-color: #00cc5a; /* adjust as needed */
-    color: #fff;
-    border: none;
+      background-color: #00cc5a;
+      /* adjust as needed */
+      color: #fff;
+      border: none;
     }
 
     body.dark-mode .feedback-popup form button[type="submit"]:hover {
-    background-color: #00b359;
+      background-color: #00b359;
     }
 
     /* Flex container for image and content */
@@ -259,6 +299,7 @@
       align-items: center;
       gap: 15px;
     }
+
     /* Grey circle placeholder as logo/image */
     .tasting-image {
       width: 80px;
@@ -267,25 +308,34 @@
       background-color: #ccc;
       flex-shrink: 0;
     }
+
+    .tasting-image img {
+      margin-left: 3px;
+    }
+
     /* Tasting details on the right */
     .tasting-text {
       flex: 1;
     }
+
     .tasting-card-header h3 {
       font-size: 18px;
       color: #6B09FF;
       margin-bottom: 5px;
     }
+
     .tasting-card-header p {
       font-size: 12px;
       color: #c3c3c3;
       margin-bottom: 15px;
     }
+
     .brew-method {
       font-size: 14px;
       font-weight: bold;
       margin-bottom: 15px;
     }
+
     .ratingSys {
       display: flex;
       justify-content: center;
@@ -297,16 +347,20 @@
       gap: 1px;
       margin-top: 10px;
     }
+
     .bean {
       font-size: 20px;
       line-height: 1;
     }
+
     .on {
       color: #6B09FF;
     }
+
     .off {
       color: #ddd;
     }
+
     /* Fixed Hamburger for Mobile */
     .fixed-hamburger {
       position: fixed;
@@ -320,33 +374,40 @@
       flex-direction: column;
       justify-content: space-between;
     }
+
     .fixed-hamburger .bar {
       height: 3.5px;
       background-color: #6B09FF;
       border-radius: 2px;
     }
+
     /* Responsive Adjustments */
     @media screen and (max-width: 1150px) {
       .sidebar {
         transform: translateX(-100%);
       }
+
       .sidebar.visible {
         transform: translateX(0);
       }
+
       .main-content {
         margin-left: 0;
       }
-      
+
       .fixed-hamburger {
         display: flex;
       }
-      .sidebar.visible ~ .fixed-hamburger {
+
+      .sidebar.visible~.fixed-hamburger {
         display: none;
       }
+
       .sidebar.visible .sidebar-hamburger {
         display: flex;
       }
     }
+
     /* Feedback Popup Styles */
     .feedback-overlay {
       position: fixed;
@@ -354,10 +415,11 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.5);
+      background-color: rgba(0, 0, 0, 0.5);
       z-index: 2000;
       display: none;
     }
+
     .feedback-popup {
       position: fixed;
       top: 50%;
@@ -371,17 +433,20 @@
       z-index: 2001;
       display: none;
     }
+
     .feedback-popup .popup-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 15px;
     }
+
     .feedback-popup .popup-header h2 {
       font-size: 24px;
       font-weight: bold;
       color: #6B09FF;
     }
+
     .feedback-popup .close-btn {
       background-color: transparent;
       border: none;
@@ -389,14 +454,17 @@
       color: #6B09FF;
       cursor: pointer;
     }
+
     .feedback-popup form {
       display: flex;
       flex-direction: column;
     }
+
     .feedback-popup form label {
       font-size: 14px;
       margin-top: 10px;
     }
+
     .feedback-popup form input,
     .feedback-popup form select,
     .feedback-popup form textarea {
@@ -406,6 +474,7 @@
       border-radius: 4px;
       font-size: 14px;
     }
+
     .feedback-popup form button[type="submit"] {
       margin-top: 15px;
       padding: 10px;
@@ -416,9 +485,11 @@
       font-size: 16px;
       cursor: pointer;
     }
+
     .feedback-popup form button[type="submit"]:hover {
       background-color: #00cc5a;
     }
+
     .lineBreak {
       border-bottom: 1px solid #ddd;
       margin: 10px 0;
@@ -431,11 +502,16 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); /* Grey out effect */
-      display: flex; /* Enable flexbox */
-      justify-content: center; /* Center horizontally */
-      align-items: center; /* Center vertically */
-      z-index: 1001; /* Make sure it stays behind the popup */
+      background-color: rgba(0, 0, 0, 0.5);
+      /* Grey out effect */
+      display: flex;
+      /* Enable flexbox */
+      justify-content: center;
+      /* Center horizontally */
+      align-items: center;
+      /* Center vertically */
+      z-index: 1001;
+      /* Make sure it stays behind the popup */
     }
 
     .popup {
@@ -445,11 +521,16 @@
       padding: 20px;
       border-radius: 4px;
       box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-      position: fixed; /* Make the popup fixed */
-      top: 50%; /* Position from the top */
-      left: 50%; /* Position from the left */
-      transform: translate(-50%, -50%); /* Center the popup using translate */
-      z-index: 1002; /* Ensure it stays on top of the overlay */
+      position: fixed;
+      /* Make the popup fixed */
+      top: 50%;
+      /* Position from the top */
+      left: 50%;
+      /* Position from the left */
+      transform: translate(-50%, -50%);
+      /* Center the popup using translate */
+      z-index: 1002;
+      /* Ensure it stays on top of the overlay */
     }
 
     body.dark-mode .popup {
@@ -538,14 +619,14 @@
         font-size: 14px;
       }
     }
-
   </style>
 </head>
+
 <body>
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <h1>BrewLog</h1>
+      <h1 onclick="location.href='dashboard.html';">BrewLog</h1>
       <!-- Hamburger icon for mobile (inside sidebar header) -->
       <div class="sidebar-hamburger" onclick="toggleMenu()">
         <div class="bar"></div>
@@ -559,7 +640,7 @@
     <nav>
       <a href="dashboard.html">Home</a>
       <a href="#">My Tastings</a>
-      <a href="#">Coffee Map</a>
+      <a onclick="showComingSoon()">Coffee Map</a>
       <div class="lineBreak"></div>
       <!-- Clicking "Feedback" opens the popup -->
       <a href="#" onclick="openFeedback(); return false;">Feedback</a>
@@ -575,7 +656,7 @@
       <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
       <div class="profile">
         <div>
-          <span>Jayden Gill</span>
+          <span>John Doe</span>
           <p>Coffee Master</p>
         </div>
         <div class="profile-image"></div>
@@ -585,22 +666,24 @@
     <!-- My Tastings Content -->
     <a onclick="window.history.back();" class="back-btn">&#8592; Back</a>
     <h2 class="page-title">My Tastings</h2>
-    
+
     <!-- Search & Sort -->
     <div class="tastings-header">
       <input type="text" class="search-bar" placeholder="Search Tastings" />
       <div class="search-sort">
         <button class="search-btn">Search</button>
-        <button class="sort-btn">Sort By</button>
+        <button class="sort-btn" onclick="showComingSoon()">Filter</button>
       </div>
     </div>
 
     <!-- Tasting Cards -->
     <div class="tastings-list">
       <!-- Tasting Card 1 -->
-      <div class="tasting-card">
+      <div class="tasting-card" onclick="window.location.href='tastingDetails.html#Guatamela';">
         <div class="tasting-card-content">
-          <div class="tasting-image"></div>
+          <div class="tasting-image">
+            <img style="margin-left: 5px;" src="assets/french-press.webp" alt="French Press" width="75" height="75">
+          </div>
           <div class="tasting-text">
             <div class="tasting-card-header">
               <h3>Guatemala Blend</h3>
@@ -617,11 +700,13 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Tasting Card 2 -->
-      <div class="tasting-card">
+      <div class="tasting-card" onclick="window.location.href='tastingDetails.html#Colombian';">
         <div class="tasting-card-content">
-          <div class="tasting-image"></div>
+          <div class="tasting-image">
+            <img src="assets/espresso.png" alt="Espresso Machine" width="75" height="75">
+          </div>
           <div class="tasting-text">
             <div class="tasting-card-header">
               <h3>Colombian Dark</h3>
@@ -659,20 +744,20 @@
     <form id="feedbackForm">
       <label for="feedbackName">Name</label>
       <input type="text" id="feedbackName" name="feedbackName" required>
-      
+
       <label for="feedbackEmail">Email</label>
       <input type="email" id="feedbackEmail" name="feedbackEmail" required>
-      
+
       <label for="feedbackType">Feedback Type</label>
       <select id="feedbackType" name="feedbackType">
         <option value="bug">Bug Report</option>
         <option value="general">General Feedback</option>
         <option value="feature">Feature Request</option>
       </select>
-      
+
       <label for="feedbackMessage">Feedback</label>
       <textarea id="feedbackMessage" name="feedbackMessage" rows="4" required></textarea>
-      
+
       <button type="submit">Submit Feedback</button>
     </form>
   </div>
@@ -693,11 +778,38 @@
   </div>
 
   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchBar = document.querySelector(".search-bar");
+      const searchButton = document.querySelector(".search-btn");
+      const tastingCards = document.querySelectorAll(".tasting-card");
+
+      function filterTastings() {
+        const query = searchBar.value.toLowerCase();
+        tastingCards.forEach(card => {
+          const title = card.querySelector("h3").textContent.toLowerCase();
+          const method = card.querySelector(".brew-method").textContent.toLowerCase();
+          if (title.includes(query) || method.includes(query)) {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+
+      searchButton.addEventListener("click", filterTastings);
+      searchBar.addEventListener("input", filterTastings);
+
+      if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+      }
+    });
+
     // Toggle Sidebar for Mobile
     function toggleMenu() {
       const sidebar = document.getElementById('sidebar');
       sidebar.classList.toggle('visible');
     }
+
     // Toggle Dark Mode and Save Preference
     function toggleTheme() {
       const body = document.body;
@@ -708,16 +820,13 @@
         localStorage.setItem('darkMode', 'disabled');
       }
     }
-    document.addEventListener("DOMContentLoaded", function () {
-      if (localStorage.getItem("darkMode") === "enabled") {
-        document.body.classList.add("dark-mode");
-      }
-    });
+
     // Open Feedback Popup
     function openFeedback() {
       document.getElementById('feedbackOverlay').style.display = 'block';
       document.getElementById('feedbackPopup').style.display = 'block';
     }
+
     // Close Feedback Popup
     function closeFeedback() {
       document.getElementById('feedbackOverlay').style.display = 'none';
@@ -729,12 +838,14 @@
       document.getElementById('comingSoonOverlay').style.display = 'flex';
       document.getElementById('comingSoonPopup').style.display = 'block';
     }
-    
+
     function closeComingSoon() {
       document.getElementById('comingSoonOverlay').style.display = 'none';
       document.getElementById('comingSoonPopup').style.display = 'none';
     }
 
+
   </script>
 </body>
+
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Add Tastings - BrewLog</title>
+  <title>Test Coffee - BrewLog</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     /* Global Styles */
@@ -280,10 +280,6 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 14px;
-    }
-    /* Advanced fields are hidden by default */
-    .advanced-field {
-      display: none;
     }
     /* When container has class advanced-mode, show advanced fields */
     .add-tasting-container.advanced-mode .advanced-field {
@@ -740,7 +736,7 @@
       <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
       <div class="profile">
         <div>
-          <span>Jayden Gill</span>
+          <span>John Doe</span>
           <p>Coffee Master</p>
         </div>
         <div class="profile-image"></div>
@@ -756,10 +752,10 @@
       <!-- Block Header: Title & Mode Toggle -->
       <div class="block-header">
         <div class="block-title">
-          <h2>Add New Tasting</h2>
+          <h2>Test Coffee</h2>
         </div>
         <div class="mode-toggle">
-          <button id="toggleModeButton" onclick="toggleMode()">Switch to Advanced Mode</button>
+          <button id="toggleModeButton" onclick="showComingSoon()">Edit</button>
         </div>
       </div>
       <!-- Tab Buttons -->
@@ -775,43 +771,31 @@
         <div class="form-grid">
           <div class="form-group">
             <label for="coffee-name">Coffee Name</label>
-            <input type="text" id="coffee-name" placeholder="Enter coffee name">
+            <p>This is Test Data</p>
           </div>
           <div class="form-group">
             <label for="brand-name">Brand Name</label>
-            <input type="text" id="brand-name" placeholder="Enter brand name">
+            <p>This is Test Data</p>
           </div>
         </div>
         <div class="form-grid">
           <div class="form-group">
             <label for="origin">Origin</label>
-            <input type="text" id="origin" placeholder="Country of origin">
+            <p>This is Test Data</p>
           </div>
           <div class="form-group">
             <label for="processing">Processing Method</label>
-            <select id="processing">
-              <option value="washed">Washed</option>
-              <option value="natural">Natural</option>
-              <option value="honey">Honey</option>
-            </select>
+            <p>This is Test Data</p>
           </div>
         </div>
         <div class="form-grid">
           <div class="form-group">
             <label for="roast">Roast Level</label>
-            <select id="roast">
-              <option value="light">Light</option>
-              <option value="medium">Medium</option>
-              <option value="dark">Dark</option>
-            </select>
+            <p>This is Test Data</p>
           </div>
           <div class="form-group">
             <label for="bean">Bean Type</label>
-            <select id="bean">
-              <option value="arabica">Arabica</option>
-              <option value="robusta">Robusta</option>
-              <option value="blend">Blend</option>
-            </select>
+            <p>This is Test Data</p>
           </div>
         </div>
         <!-- Advanced fields for Coffee Information -->
@@ -819,29 +803,29 @@
           <div class="form-grid">
             <div class="form-group">
               <label for="producer">Producer &amp; Farm/Finca</label>
-              <input type="text" id="producer" placeholder="Enter producer/farm">
+              <p>This is Test Data</p>
             </div>
             <div class="form-group">
               <label for="elevation">Elevation</label>
-              <input type="text" id="elevation" placeholder="Enter elevation (meters)">
+              <p>This is Test Data</p>
             </div>
           </div>
           <div class="form-grid">
             <div class="form-group">
               <label for="price">Price</label>
-              <input type="text" id="price" placeholder="Enter price">
+              <p>This is Test Data</p>
             </div>
             <div class="form-group">
               <label for="links">Purchase Link(s)</label>
-              <input type="text" id="links" placeholder="Paste URL(s)">
+              <p>This is Test Data</p>
             </div>
           </div>
           <div class="full-row">
             <label for="more-info">More Information</label>
-            <textarea id="more-info" placeholder="Additional details..."></textarea>
+            <p>This is Test Data</p>
           </div>
-          <div class="image-upload" onclick="showComingSoon();">
-            + Insert Image
+          <div class="image-upload" onclick="alert('Open Image Full Screen');">
+            Image Here
           </div>
         </div>
       </div>
@@ -852,40 +836,31 @@
         <div class="form-grid">
           <div class="form-group">
             <label for="brew-method">Brew Method</label>
-            <select id="brew-method">
-              <option value="v60">V60</option>
-              <option value="french-press">French Press</option>
-              <option value="espresso">Espresso</option>
-              <option value="aeropress">AeroPress</option>
-            </select>
+            <p>This is Test Data</p>
           </div>
           <div class="form-group">
             <label for="grind-setting">Grind Setting</label>
-            <select id="grind-setting">
-              <option value="coarse">Coarse</option>
-              <option value="medium">Medium</option>
-              <option value="fine">Fine</option>
-            </select>
+            <p>This is Test Data</p>
           </div>
         </div>
         <div class="form-grid">
           <div class="form-group">
             <label for="water-temp">Water Temperature (°C)</label>
-            <input type="number" id="water-temp" placeholder="e.g., 93">
+            <p>This is Test Data</p>
           </div>
           <div class="form-group">
             <label for="brew-time">Brew Time (mm:ss)</label>
-            <input type="text" id="brew-time" placeholder="Minutes:Seconds">
+            <p>This is Test Data</p>
           </div>
         </div>
         <div class="form-grid">
           <div class="form-group">
             <label for="coffee-dose">Coffee Dose (g)</label>
-            <input type="number" id="coffee-dose" placeholder="Enter coffee dose">
+            <p>This is Test Data</p>
           </div>
           <div class="form-group">
             <label for="water-volume">Water Volume (ml)</label>
-            <input type="number" id="water-volume" placeholder="Enter water volume">
+            <p>This is Test Data</p>
           </div>
         </div>
         <!-- Advanced fields for Coffee Preparation -->
@@ -893,32 +868,27 @@
           <div class="form-grid">
             <div class="form-group">
               <label for="equipment-used">Equipment Used</label>
-              <input type="text" id="equipment-used" placeholder="E.g., V60, Espresso Machine">
+              <p>This is Test Data</p>
             </div>
             <div class="form-group">
               <label for="filter-type">Filter Type</label>
-              <select id="filter-type">
-                <option value="paper">Paper</option>
-                <option value="metal">Metal</option>
-                <option value="cloth">Cloth</option>
-                <option value="cloth">None</option>
-              </select>
+              <p>This is Test Data</p>
             </div>
           </div>
           <div class="form-grid">
             <div class="form-group">
               <label for="bloom-time">Bloom Time (sec)</label>
-              <input type="number" id="bloom-time" placeholder="Enter bloom time">
+              <p>This is Test Data</p>
             </div>
             <div class="form-group">
               <label for="total-brew-time">Total Brew Time (sec)</label>
-              <input type="number" id="total-brew-time" placeholder="Enter total brew time">
+              <p>This is Test Data</p>
             </div>
           </div>
 
           <div class="form-group">
             <label for="improvement">Next Steps to Improve Brew</label>
-            <textarea id="improvement" placeholder="Enter improvements for next time"></textarea>
+            <p>This is Test Data</p>
           </div>
           
         </div>
@@ -930,37 +900,23 @@
         <div class="form-grid">
           <div class="form-group">
             <label for="aroma">Aroma</label>
-            <input id="aroma" placeholder="Describe the aroma"></input>
+            <p>This is Test Data</p>
           </div>
         
           <div class="form-group">
             <label for="acidity">Acidity</label>
-            <select id="acidity">
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-            </select>
+            <p>This is Test Data</p>
           </div>
         </div>
         <div class="form-grid">
           <div class="form-group">
             <label for="body">Body</label>
-            <select id="body">
-              <option value="light">Light</option>
-              <option value="medium">Medium</option>
-              <option value="full">Full</option>
-            </select>
+            <p>This is Test Data</p>
           </div>
 
           <div class="form-group">
             <label for="flavor-notes">Flavor Notes</label>
-            <input type="text" id="flavor-notes" list="flavorSuggestions" placeholder="Type to see suggestions...">
-            <datalist id="flavorSuggestions">
-              <option value="Chocolate">
-              <option value="Nutty">
-              <option value="Fruity">
-              <option value="Floral">
-            </datalist>
+            <p>This is Test Data</p>
           </div>
         </div>
 
@@ -972,21 +928,17 @@
           <div class="form-grid">
             <div class="form-group">
               <label for="sweetness">Sweetness Level</label>
-              <select id="sweetness">
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-              </select>
+              <p>This is Test Data</p>
             </div>
             <div class="form-group">
               <label for="aftertaste">Aftertaste</label>
-              <input id="aftertaste" placeholder="Describe the aftertaste"></input>
+              <p>This is Test Data</p>
             </div>
           </div>
           
           <div class="form-group">
             <label for="improvement">Notes</label>
-            <textarea id="improvement" placeholder="Additional Notes..."></textarea>
+            <p>This is Test Data</p>
           </div>
         </div>
 
@@ -1003,13 +955,6 @@
         </div>
       </div>
 
-      <!-- Save/Discard Buttons -->
-      <div class="add-tasting-buttons">
-        <button type="submit" class="save" onclick="showComingSoon()">Save</button>
-        <button type="button" class="discard" onclick="window.history.back();">Discard</button>
-      </div>
-    </div>
-  </div>
   
   <!-- Fixed Hamburger for Mobile -->
   <div class="fixed-hamburger" id="fixedHamburger" onclick="toggleMenu()">
@@ -1111,24 +1056,6 @@
         document.getElementById("feedbackForm").reset();
         closeFeedback();
       });
-
-      const beans = document.querySelectorAll('#ratingSys .bean');
-      beans.forEach(bean => {
-        bean.addEventListener('click', function() {
-          const rating = parseInt(this.getAttribute('data-value'));
-          document.getElementById('ratingValue').value = rating;
-          beans.forEach(b => {
-            const bValue = parseInt(b.getAttribute('data-value'));
-            if(bValue <= rating) {
-              b.classList.add('on');
-              b.classList.remove('off');
-            } else {
-              b.classList.add('off');
-              b.classList.remove('on');
-            }
-          });
-        });
-      }); 
     });
     
     // Feedback Popup Functions
@@ -1141,18 +1068,6 @@
       document.getElementById("feedbackPopup").style.display = "none";
     }
 
-    // Mode Toggle Functionality
-    function toggleMode() {
-      var container = document.getElementById('addTastingContainer');
-      var toggleButton = document.getElementById('toggleModeButton');
-      if (container.classList.contains('advanced-mode')) {
-        container.classList.remove('advanced-mode');
-        toggleButton.innerText = "Switch to Advanced Mode";
-      } else {
-        container.classList.add('advanced-mode');
-        toggleButton.innerText = "Switch to Simple Mode";
-      }
-    }
 
     // New functions for the Coming Soon popup
     function showComingSoon() {
