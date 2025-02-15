@@ -94,7 +94,7 @@
       left: 0;
       top: 0;
       transition: transform 0.3s ease;
-      z-index: 1000;
+      z-index: 1005;
     }
     @media screen and (max-width: 1150px) {
       .sidebar {
@@ -203,7 +203,6 @@
       position: fixed;
       top: 10px;
       left: 10px;
-      z-index: 1100;
       display: none;
       cursor: pointer;
       width: 24px;
@@ -718,7 +717,7 @@
         <div class="bar"></div>
       </div>
     </div>
-    <button><span class="plus-icon">+</span> Add New Tasting</button>
+    <button onclick="location.href='addTasting.html';"><span class="plus-icon">+</span> Add New Tasting</button>
     <nav>
       <a href="dashboard.html">Home</a>
       <a href="myTastings.html">My Tastings</a>
@@ -1010,7 +1009,9 @@
     // Toggle Sidebar Menu
     function toggleMenu() {
       const sidebar = document.getElementById('sidebar');
+      const hamburger = document.get
       sidebar.classList.toggle('visible');
+
     }
 
     // Toggle Dark Mode
