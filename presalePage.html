@@ -14,24 +14,33 @@
         margin: 0;
         padding: 0;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
         flex-direction: column;
+        justify-content: flex-start; /* Ensure the content starts at the top */
+        align-items: center;
+        min-height: 100vh; /* Ensure the body takes up the full viewport height */
     }
 
     .header {
         text-align: center;
+        margin-top: 40px; /* Add top margin to ensure it doesn't touch the top of the screen */
         margin-bottom: 40px;
     }
 
     .header h1 {
         color: #007bff;
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    .header p {
+        font-size: 1.1em;
+        color: #555;
     }
 
     .pricing-table {
         display: flex;
         justify-content: space-evenly;
+        flex-wrap: wrap;
         width: 80%;
         max-width: 1200px;
     }
@@ -40,13 +49,16 @@
         background-color: white;
         border-radius: 12px;
         padding: 25px;
-        width: 25%; /* Reduced width for thinner boxes */
+        width: 25%;
+        min-width: 250px;
+        max-width: 350px;
         height: 400px;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
         text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        margin: 0 20px; /* Increased space between the boxes */
+        margin: 0 20px;
         position: relative;
+        margin-bottom: 20px;
     }
 
     .pricing-option:hover {
@@ -119,13 +131,13 @@
         font-size: 1.1em;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        width: 100%;
     }
 
     button.signup:hover {
         background-color: #0056b3;
     }
 
-    /* Progress Bar Styles */
     .progress-container {
         width: 80%;
         max-width: 600px;
@@ -152,7 +164,6 @@
         color: white;
     }
 
-    /* Disabled State */
     .disabled {
         background-color: #f2f2f2;
         color: #b0b0b0;
@@ -172,21 +183,63 @@
 
     /* Mobile Responsive */
     @media (max-width: 768px) {
+        .header h1 {
+            font-size: 1.8em;
+        }
+
         .pricing-table {
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            width: 100%; /* Ensure it takes up full width */
+            padding: 0 20px; /* Add padding to avoid hitting the edges of the screen */
         }
 
         .pricing-option {
-            width: 80%;
+            width: 90%;
             margin-bottom: 20px;
-            height: 400px;
+            height: auto;
+            max-width: 90%;
+            margin-left: 0; /* Remove any additional margins */
+            margin-right: 0; /* Remove any additional margins */
+            box-sizing: border-box; /* Make sure padding and margins are accounted for */
         }
+
+        button.signup {
+            font-size: 1.2em;
+            padding: 12px;
+        }
+
+        .price {
+            font-size: 1.5em;
+        }
+
+        .progress-container {
+            width: 90%;
+        }
+    }
+
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #f7f9fc;
+      color: #555;
+    }
+    
+    footer a {
+      color: #007bff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
     }
 </style>
 <body>
     <div class="header">
-        <h1>BrewLog Early Access Presale!</h1> 
+        <h1>BrewLog Early Access Presale!</h1>
         <p>Choose your plan and secure your spot for our exclusive presale!</p>
     </div>
 
@@ -201,7 +254,6 @@
             </ul>
             <p class="price">$3.50 <span>/month</span></p>
             <button class="signup" id="earlyAccessButton" onclick="location.href='https://buy.stripe.com/cN24iu9JJcox0h2144';">Select</button>
-            <!-- Progress Bar for Early Access -->
             <div class="progress-container">
                 <div class="progress-bar" id="earlyAccessProgress" style="width: 100%"></div>
                 <div class="progress-text" id="progressTextEarly">5 Spots Left</div>
@@ -219,7 +271,6 @@
             </ul>
             <p class="price">$29.99 <span>/year</span></p>
             <button class="signup" id="yearlyButton"  onclick="location.href='https://buy.stripe.com/14k5my6xx9cld3O8wx';" >Select</button>
-            <!-- Progress Bar for Yearly Plan -->
             <div class="progress-container">
                 <div class="progress-bar" id="yearlyProgress" style="width: 100%"></div>
                 <div class="progress-text" id="progressTextYearly">3 Spots Left</div>
@@ -237,7 +288,6 @@
             </ul>
             <p class="price">$74.99 <span>/lifetime</span></p>
             <button class="signup" id="lifetimeButton" onclick="location.href='https://buy.stripe.com/dR6bKW09974dfbWeUW';">Select</button>
-            <!-- Progress Bar for Lifetime Plan -->
             <div class="progress-container">
                 <div class="progress-bar" id="lifetimeProgress" style="width: 100%"></div>
                 <div class="progress-text" id="progressTextLifetime">1 Spot Left</div>
@@ -246,30 +296,31 @@
         </div>
     </div>
 
+    <footer>
+        <p>
+          <a href="terms.html" target="_blank">Terms and Conditions</a> |
+          <a href="privacy.html" target="_blank">Privacy Policy</a>
+        </p>
+    </footer>
+
     <script>
-        // Initial number of spots for each plan
         let earlyAccessSpotsLeft = 5;
         let yearlySpotsLeft = 3;
         let lifetimeSpotsLeft = 1;
 
-        // Update progress bar based on remaining spots for each plan
         function updateProgressBar() {
-            // Early Access Progress Bar
             let earlyProgress = (5 - earlyAccessSpotsLeft) / 5 * 100;
             document.getElementById('earlyAccessProgress').style.width = earlyProgress + '%';
             document.getElementById('progressTextEarly').innerText = earlyAccessSpotsLeft + ' Spots Left';
 
-            // Yearly Plan Progress Bar
             let yearlyProgress = (3 - yearlySpotsLeft) / 3 * 100;
             document.getElementById('yearlyProgress').style.width = yearlyProgress + '%';
             document.getElementById('progressTextYearly').innerText = yearlySpotsLeft + ' Spots Left';
 
-            // Lifetime Plan Progress Bar
             let lifetimeProgress = (1 - lifetimeSpotsLeft) / 1 * 100;
             document.getElementById('lifetimeProgress').style.width = lifetimeProgress + '%';
             document.getElementById('progressTextLifetime').innerText = lifetimeSpotsLeft + ' Spot Left';
 
-            // Check if any plan is sold out
             if (earlyAccessSpotsLeft === 0) {
                 document.getElementById('earlyAccessPlan').classList.add('disabled');
                 document.getElementById('soldOutTextEarly').style.display = 'block';
@@ -289,7 +340,6 @@
             }
         }
 
-        // Initial call to update all progress bars on page load
         updateProgressBar();
     </script>
 </body>
