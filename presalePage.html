@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brewlog Early Access Presale</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f7f9fc;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .header h1 {
+        color: #007bff;
+    }
+
+    .pricing-table {
+        display: flex;
+        justify-content: space-evenly;
+        width: 80%;
+        max-width: 1200px;
+    }
+
+    .pricing-option {
+        background-color: white;
+        border-radius: 12px;
+        padding: 25px;
+        width: 25%; /* Reduced width for thinner boxes */
+        height: 400px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin: 0 20px; /* Increased space between the boxes */
+        position: relative;
+    }
+
+    .pricing-option:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: #007bff;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        color: white;
+    }
+
+    .personal-icon {
+        background-color: #00c4cc;
+    }
+
+    .small-team-icon {
+        background-color: #ff7a00;
+    }
+
+    .enterprise-icon {
+        background-color: #ff4f7d;
+    }
+
+    h3 {
+        font-size: 1.6em;
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    ul li {
+        margin-bottom: 8px;
+        color: #666;
+        font-size: 0.9em;
+    }
+
+    .price {
+        font-size: 2em;
+        font-weight: bold;
+        color: #007bff;
+        margin-bottom: 20px;
+    }
+
+    .price span {
+        font-size: 0.9 em;
+        color: #333;
+    }
+
+    button.signup {
+        padding: 12px 25px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button.signup:hover {
+        background-color: #0056b3;
+    }
+
+    /* Progress Bar Styles */
+    .progress-container {
+        width: 80%;
+        max-width: 600px;
+        background-color: #e0e0e0;
+        border-radius: 10px;
+        height: 25px;
+        margin: 20px auto;
+        position: relative;
+    }
+
+    .progress-bar {
+        background-color: #00c4cc;
+        height: 100%;
+        border-radius: 10px;
+        transition: width 0.3s ease;
+    }
+
+    .progress-text {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: bold;
+        color: white;
+    }
+
+    /* Disabled State */
+    .disabled {
+        background-color: #f2f2f2;
+        color: #b0b0b0;
+        pointer-events: none;
+    }
+
+    .sold-out {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: bold;
+        color: #ff4f7d;
+        font-size: 1.2em;
+        z-index: 10;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .pricing-table {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pricing-option {
+            width: 80%;
+            margin-bottom: 20px;
+            height: 400px;
+        }
+    }
+</style>
+<body>
+    <div class="header">
+        <h1>BrewLog Early Access Presale!</h1> 
+        <p>Choose your plan and secure your spot for our exclusive presale!</p>
+    </div>
+
+    <div class="pricing-table">
+        <!-- Early Access Plan -->
+        <div class="pricing-option personal" id="earlyAccessPlan">
+            <div class="icon personal-icon">💎</div>
+            <h3>Monthly</h3>
+            <ul>
+                <li>Access to All Future Upgrades!</li>
+                <li>Price Locked Even After Future Increases</li>
+            </ul>
+            <p class="price">$3.50 <span>/month</span></p>
+            <button class="signup" id="earlyAccessButton" onclick="location.href='https://buy.stripe.com/cN24iu9JJcox0h2144';">Select</button>
+            <!-- Progress Bar for Early Access -->
+            <div class="progress-container">
+                <div class="progress-bar" id="earlyAccessProgress" style="width: 100%"></div>
+                <div class="progress-text" id="progressTextEarly">5 Spots Left</div>
+            </div>
+            <div class="sold-out" id="soldOutTextEarly" style="display: none;">Sold Out</div>
+        </div>
+
+        <!-- Yearly Plan -->
+        <div class="pricing-option small-team" id="yearlyPlan">
+            <div class="icon small-team-icon">📅</div>
+            <h3>Yearly Plan</h3>
+            <ul>
+                <li>Annual Price, 30% Cheaper!</li>
+                <li>Lock In This Price Forever</li>
+            </ul>
+            <p class="price">$29.99 <span>/year</span></p>
+            <button class="signup" id="yearlyButton"  onclick="location.href='https://buy.stripe.com/14k5my6xx9cld3O8wx';" >Select</button>
+            <!-- Progress Bar for Yearly Plan -->
+            <div class="progress-container">
+                <div class="progress-bar" id="yearlyProgress" style="width: 100%"></div>
+                <div class="progress-text" id="progressTextYearly">3 Spots Left</div>
+            </div>
+            <div class="sold-out" id="soldOutTextYearly" style="display: none;">Sold Out</div>
+        </div>
+
+        <!-- Lifetime Plan -->
+        <div class="pricing-option enterprise" id="lifetimePlan">
+            <div class="icon enterprise-icon">🔒</div>
+            <h3>Lifetime Plan</h3>
+            <ul>
+                <li>Lifetime access to Brewlog!</li>
+                <li>One-time payment</li>
+            </ul>
+            <p class="price">$74.99 <span>/lifetime</span></p>
+            <button class="signup" id="lifetimeButton" onclick="location.href='https://buy.stripe.com/dR6bKW09974dfbWeUW';">Select</button>
+            <!-- Progress Bar for Lifetime Plan -->
+            <div class="progress-container">
+                <div class="progress-bar" id="lifetimeProgress" style="width: 100%"></div>
+                <div class="progress-text" id="progressTextLifetime">1 Spot Left</div>
+            </div>
+            <div class="sold-out" id="soldOutTextLifetime" style="display: none;">Sold Out</div>
+        </div>
+    </div>
+
+    <script>
+        // Initial number of spots for each plan
+        let earlyAccessSpotsLeft = 5;
+        let yearlySpotsLeft = 3;
+        let lifetimeSpotsLeft = 1;
+
+        // Update progress bar based on remaining spots for each plan
+        function updateProgressBar() {
+            // Early Access Progress Bar
+            let earlyProgress = (5 - earlyAccessSpotsLeft) / 5 * 100;
+            document.getElementById('earlyAccessProgress').style.width = earlyProgress + '%';
+            document.getElementById('progressTextEarly').innerText = earlyAccessSpotsLeft + ' Spots Left';
+
+            // Yearly Plan Progress Bar
+            let yearlyProgress = (3 - yearlySpotsLeft) / 3 * 100;
+            document.getElementById('yearlyProgress').style.width = yearlyProgress + '%';
+            document.getElementById('progressTextYearly').innerText = yearlySpotsLeft + ' Spots Left';
+
+            // Lifetime Plan Progress Bar
+            let lifetimeProgress = (1 - lifetimeSpotsLeft) / 1 * 100;
+            document.getElementById('lifetimeProgress').style.width = lifetimeProgress + '%';
+            document.getElementById('progressTextLifetime').innerText = lifetimeSpotsLeft + ' Spot Left';
+
+            // Check if any plan is sold out
+            if (earlyAccessSpotsLeft === 0) {
+                document.getElementById('earlyAccessPlan').classList.add('disabled');
+                document.getElementById('soldOutTextEarly').style.display = 'block';
+                document.getElementById('earlyAccessButton').disabled = true;
+            }
+
+            if (yearlySpotsLeft === 0) {
+                document.getElementById('yearlyPlan').classList.add('disabled');
+                document.getElementById('soldOutTextYearly').style.display = 'block';
+                document.getElementById('yearlyButton').disabled = true;
+            }
+
+            if (lifetimeSpotsLeft === 0) {
+                document.getElementById('lifetimePlan').classList.add('disabled');
+                document.getElementById('soldOutTextLifetime').style.display = 'block';
+                document.getElementById('lifetimeButton').disabled = true;
+            }
+        }
+
+        // Initial call to update all progress bars on page load
+        updateProgressBar();
+    </script>
+</body>
+</html>
