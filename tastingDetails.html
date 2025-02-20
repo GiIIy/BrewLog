@@ -609,7 +609,7 @@
       display: flex; /* Enable flexbox */
       justify-content: center; /* Center horizontally */
       align-items: center; /* Center vertically */
-      z-index: 1001; /* Make sure it stays behind the popup */
+      z-index: 2001; /* Make sure it stays behind the popup */
     }
 
     .popup {
@@ -623,7 +623,7 @@
       top: 50%; /* Position from the top */
       left: 50%; /* Position from the left */
       transform: translate(-50%, -50%); /* Center the popup using translate */
-      z-index: 1002; /* Ensure it stays on top of the overlay */
+      z-index: 2002; /* Ensure it stays on top of the overlay */
     }
 
     body.dark-mode .popup {
@@ -730,7 +730,7 @@
     <nav>
       <a href="dashboard.html">Home</a>
       <a href="myTastings.html">My Tastings</a>
-      <a href="#" onclick="showComingSoon(); return false;">Coffee Map</a>
+      <a href="coffeeMap.html">Coffee Map</a>
       <div class="lineBreak"></div>
       <a href="#" onclick="openFeedback(); return false;">Feedback</a>
       <a href="#" onclick="showComingSoon(); return false;">Help Center</a>
@@ -742,7 +742,7 @@
   <div class="main-content">
     <div class="top-nav">
       <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
-      <div class="profile">
+      <div class="profile" onclick="window.location.href='profile.html';">
         <div>
           <span>John Doe</span>
           <p>Coffee Master</p>
@@ -978,7 +978,7 @@
       <h2>Feedback</h2>
       <button class="close-btn" onclick="closeFeedback()">×</button>
     </div>
-    <form id="feedbackForm" action="https://formsubmit.co/littlejjgill@gmail.com" method="POST">
+    <form id="feedbackForm" action="https://submit-form.com/FVNiq1HKl">
       <label for="feedbackName">Name</label>
       <input type="text" id="feedbackName" name="feedbackName" required>
       

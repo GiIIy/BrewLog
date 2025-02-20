@@ -700,24 +700,94 @@
       background-color: #00cc5a;
     }
 
-    /* Responsive Styles */
+   /* Responsive Styles */
     @media screen and (max-width: 600px) {
       .popup {
-        padding: 15px;
+        padding: 12px;
+        width: 90%; /* Ensures it doesn't overflow on small screens */
+        max-width: 350px;
       }
 
       .popup-header h2 {
-        font-size: 20px;
+        font-size: 18px;
+        text-align: center;
       }
 
       .popup-content {
         font-size: 14px;
+        line-height: 1.4;
+      }
+
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
       }
 
       .button-container button {
         font-size: 14px;
+        padding: 8px 10px;
+        width: 100%; /* Makes buttons full-width for easier tapping */
       }
     }
+
+    /* Timer Section */
+    .timer-section {
+      background: #2c2c2c;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 100%;
+      margin: auto;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Centers content */
+      gap: 8px;
+      flex-wrap: wrap; /* Allows elements to stack if needed */
+    }
+
+    .timer-section h3 {
+      font-size: 1rem; /* Slightly smaller for mobile */
+      color: #d4a373;
+      white-space: nowrap;
+      margin: 0;
+    }
+
+    .timer-display {
+      font-size: 1.8rem;
+      font-weight: bold;
+      padding: 5px 12px;
+      background: #1e1e1e;
+      border-radius: 5px;
+      min-width: 80px; 
+      text-align: center;
+    }
+
+    /* Button Styles */
+     .timer-section button {
+      padding: 6px 12px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: bold;
+      background: #d4a373;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      width: 100%; /* Full width on smaller screens */
+      max-width: 200px; /* Prevents excessive stretching */
+    }
+
+    .timer-section button:hover {
+      background: #b5835a;
+    }
+
+    .timer-section button:active {
+      transform: scale(0.95);
+    }
+
 
   </style>
 </head>
@@ -736,7 +806,7 @@
     <nav>
       <a href="dashboard.html">Home</a>
       <a href="myTastings.html">My Tastings</a>
-      <a href="#" onclick="showComingSoon(); return false;">Coffee Map</a>
+      <a href="coffeeMap.html">Coffee Map</a>
       <div class="lineBreak"></div>
       <a href="#" onclick="openFeedback(); return false;">Feedback</a>
       <a href="#" onclick="showComingSoon(); return false;">Help Center</a>
@@ -748,9 +818,9 @@
   <div class="main-content">
     <div class="top-nav">
       <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
-      <div class="profile">
+      <div class="profile" onclick="window.location.href='profile.html';">
         <div>
-          <span>Jayden Gill</span>
+          <span>John Doe</span>
           <p>Coffee Master</p>
         </div>
         <div class="profile-image"></div>
@@ -930,6 +1000,16 @@
             <label for="improvement">Next Steps to Improve Brew</label>
             <textarea id="improvement" placeholder="Enter improvements for next time"></textarea>
           </div>
+
+           
+        <!-- Timer Function -->
+        <div class="timer-section">
+          <h3>Brew Timer</h3>
+          <div class="timer-display" id="timerDisplay">00:00</div>
+          <button type="button" onclick="startTimer()">Start</button>
+          <button type="button" onclick="stopTimer()">Stop</button>
+          <button type="button" onclick="resetTimer()">Reset</button>
+        </div>
           
         </div>
       </div>
@@ -1035,7 +1115,7 @@
       <h2>Feedback</h2>
       <button class="close-btn" onclick="closeFeedback()">×</button>
     </div>
-    <form id="feedbackForm" action="https://formsubmit.co/littlejjgill@gmail.com" method="POST">
+    <form id="feedbackForm" action="https://submit-form.com/FVNiq1HKl">
       <label for="feedbackName">Name</label>
       <input type="text" id="feedbackName" name="feedbackName" required>
       
@@ -1173,6 +1253,37 @@
     function closeComingSoon() {
       document.getElementById('comingSoonOverlay').style.display = 'none';
       document.getElementById('comingSoonPopup').style.display = 'none';
+    }
+    let stepCount = 3;
+    function addStep() {
+      stepCount++;
+      const stepsContainer = document.getElementById("stepsContainer");
+      const stepDiv = document.createElement("div");
+      stepDiv.classList.add("form-group", "step");
+      stepDiv.innerHTML = `<label>Step ${stepCount}</label><input type="text" placeholder="Enter brewing step">`;
+      stepsContainer.appendChild(stepDiv);
+    }
+
+    let timer;
+    let totalSeconds = 0;
+    function startTimer() {
+      if (!timer) {
+        timer = setInterval(() => {
+          totalSeconds++;
+          const minutes = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+          const seconds = String(totalSeconds % 60).padStart(2, '0');
+          document.getElementById("timerDisplay").textContent = `${minutes}:${seconds}`;
+        }, 1000);
+      }
+    }
+    function stopTimer() {
+      clearInterval(timer);
+      timer = null;
+    }
+    function resetTimer() {
+      stopTimer();
+      totalSeconds = 0;
+      document.getElementById("timerDisplay").textContent = "00:00";
     }
   </script>
 </body>

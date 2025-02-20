@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1TKGEWT9MJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-1TKGEWT9MJ');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile - BrewLog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+    body {
+      background-color: #f8f8f8;
+      display: flex;
+      overflow-x: hidden;
+    }
+    body.dark-mode {
+      background-color: #121212;
+      color: #fff;
+    }
+    /* Sidebar */
+    .sidebar {
+      width: 270px;
+      background-color: #fff;
+      padding: 20px;
+      border-right: 1px solid #ddd;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+    body.dark-mode .sidebar {
+      background-color: #1f1f1f;
+      border-color: #444;
+    }
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 35px;
+    }
+    .sidebar h1 {
+      color: #6B09FF;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .sidebar-hamburger {
+      display: none;
+      cursor: pointer;
+      width: 24px;
+      height: 18px;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .sidebar-hamburger .bar {
+      height: 3.5px;
+      background-color: #6B09FF;
+      border-radius: 2px;
+    }
+    .sidebar button {
+      background-color: #00E46A;
+      color: white;
+      border: none;
+      padding: 13px;
+      width: 100%;
+      margin-bottom: 20px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sidebar button:hover {
+      background-color: #00cc5a;
+    }
+    .plus-icon {
+      font-size: 36px;
+      margin-right: 10px;
+      line-height: 0;
+    }
+    .sidebar nav a {
+      display: block;
+      padding: 10px 0;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      margin-bottom: 15px;
+      padding-left: 10px;
+    }
+    body.dark-mode .sidebar nav a {
+      color: #fff;
+    }
+    .sidebar nav a:hover {
+      background-color: #eee;
+      border-radius: 5px;
+    }
+    body.dark-mode .sidebar nav a:hover {
+      background-color: #333;
+    }
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      margin-left: 270px;
+      transition: margin-left 0.3s ease;
+    }
+    /* Top Navigation */
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 0 10px;
+    }
+    .theme-toggle {
+      cursor: pointer;
+      padding: 5px;
+      background-color: #6B09FF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+    .theme-toggle:hover {
+      background-color: #4f00e6;
+    }
+    .profile {
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .profile p {
+      font-size: 8px;
+      color: #c3c3c3;
+      margin-left: 5px;
+    }
+    .profile-image {
+      width: 35px;
+      height: 35px;
+      background-color: #00E46A;
+      border-radius: 50%;
+      margin-left: 10px;
+    }
+    /* Page Container */
+    .page-container {
+      max-width: 1200px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 40px 30px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+    body.dark-mode .page-container {
+      background-color: #1f1f1f;
+      border: 1px solid #444;
+    }
+    /* Profile Section */
+    .profile-section {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+    .profile-picture {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: #ccc;
+      background-size: cover;
+      background-position: center;
+    }
+    .profile-info {
+      flex: 1;
+    }
+    .profile-info h2 {
+      font-size: 28px;
+      color: #6B09FF;
+      margin-bottom: 10px;
+    }
+    .profile-info p {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    .edit-btn {
+      align-self: flex-start;
+      background-color: #00E46A;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+    .edit-btn:hover {
+      background-color: #00cc5a;
+    }
+    /* Responsive Adjustments */
+    @media screen and (max-width: 1150px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.visible {
+        transform: translateX(0);
+      }
+      .main-content {
+        margin-left: 0;
+      }
+    }
+    /* Feedback Popup & Overlay, Coming Soon Popup, etc.
+       (Re-use same styles from your other pages) */
+    .feedback-overlay,
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 2000;
+      display: none;
+    }
+    .feedback-popup,
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      padding: 20px;
+      border-radius: 4px;
+      width: 90%;
+      max-width: 500px;
+      z-index: 2001;
+      display: none;
+    }
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .popup-header h2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #6B09FF;
+    }
+    .close-btn {
+      background-color: transparent;
+      border: none;
+      font-size: 24px;
+      color: #6B09FF;
+      cursor: pointer;
+    }
+    .close-btn:hover {
+      color: #BB00FF;
+    }
+    .popup-content {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      line-height: 1.5;
+    }
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+    .button-container button {
+      padding: 12px 20px;
+      background-color: #00E46A;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .button-container button:hover {
+      background-color: #00cc5a;
+    }
+    body.dark-mode .feedback-popup,
+    body.dark-mode .popup {
+      background-color: #1f1f1f;
+      color: white;
+    }
+    body.dark-mode .leaflet-popup-content-wrapper {
+      background: #1f1f1f;
+      color: #fff;
+    }
+    body.dark-mode .leaflet-popup-tip {
+      background: #1f1f1f;
+    }
+    .lineBreak {
+      border-bottom: 1px solid #ddd;
+      margin: 10px 0;
+    }
+    /* Back Button Container */
+    .back-container {
+      max-width: 1200px;
+      margin: 20px auto 10px auto;
+      text-align: left;
+    }
+    .back-container button {
+      background: none;
+      border: none;
+      font-size: 16px;
+      color: #6B09FF;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h1 onclick="location.href='dashboard.html';">BrewLog</h1>
+      <!-- Hamburger icon for mobile -->
+      <div class="sidebar-hamburger" onclick="toggleMenu()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+    <button onclick="location.href='addTasting.html';">
+      <span class="plus-icon">+</span> Add New Tasting
+    </button>
+    <nav>
+      <a href="dashboard.html">Home</a>
+      <a href="#">My Tastings</a>
+      <a href="coffeeMap.html">Coffee Map</a>
+      <div class="lineBreak"></div>
+      <a href="#" onclick="openFeedback(); return false;">Feedback</a>
+      <a href="#" onclick="showComingSoon(); return false;">Help Center</a>
+      <a href="#" onclick="showComingSoon(); return false;">Contact Us</a>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Top Navigation -->
+    <div class="top-nav">
+      <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
+      <div class="profile">
+        <div>
+          <span>John Doe</span>
+          <p>Coffee Master</p>
+        </div>
+        <div class="profile-image"></div>
+      </div>
+    </div>
+
+    <!-- Back Button Container -->
+    <div class="back-container">
+      <button onclick="window.history.back();">&#8592; Back</button>
+    </div>
+
+    <!-- Page Container -->
+    <div class="page-container">
+      <h1>My Profile</h1>
+      <div class="profile-section">
+        <div class="profile-picture" style="background-image: url('https://via.placeholder.com/120');"></div>
+        <div class="profile-info">
+          <h2>John Doe</h2>
+          <p>Email: john@example.com</p>
+          <p>Location: New York, NY</p>
+          <p>Member since: January 2022</p>
+          <button class="edit-btn" onclick="showComingSoon()">Edit Profile</button>
+        </div>
+      </div>
+      <!-- Additional profile details can be added here -->
+      <div>
+        <h3>About Me</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor massa, nec semper lorem quam in massa.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fixed Hamburger for Mobile -->
+  <div class="fixed-hamburger" id="fixedHamburger" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <!-- Feedback Popup and Overlay -->
+  <div class="feedback-overlay" id="feedbackOverlay"></div>
+  <div class="feedback-popup" id="feedbackPopup">
+    <div class="popup-header">
+      <h2>Feedback</h2>
+      <button class="close-btn" onclick="closeFeedback()">×</button>
+    </div>
+    <form id="feedbackForm" action="https://submit-form.com/FVNiq1HKl" >
+      <label for="feedbackName">Name</label>
+      <input type="text" id="feedbackName" name="feedbackName" required>
+      <label for="feedbackEmail">Email</label>
+      <input type="email" id="feedbackEmail" name="feedbackEmail" required>
+      <label for="feedbackType">Feedback Type</label>
+      <select id="feedbackType" name="feedbackType">
+        <option value="bug">Bug Report</option>
+        <option value="general">General Feedback</option>
+        <option value="feature">Feature Request</option>
+      </select>
+      <label for="feedbackMessage">Feedback</label>
+      <textarea id="feedbackMessage" name="feedbackMessage" rows="4" required></textarea>
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </div>
+
+  <!-- Coming Soon Popup and Overlay -->
+  <div class="overlay" id="comingSoonOverlay" style="display:none;"></div>
+  <div class="popup" id="comingSoonPopup" style="display:none;">
+    <div class="popup-header">
+      <h2>Coming Soon</h2>
+      <button class="close-btn" onclick="closeComingSoon()">×</button>
+    </div>
+    <div class="popup-content">
+      <p>Feature coming soon!</p>
+    </div>
+    <div class="button-container">
+      <button onclick="closeComingSoon()">OK</button>
+    </div>
+  </div>
+
+  <!-- Leaflet JS (if needed for other pages) -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Toggle Sidebar for Mobile
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('visible');
+    }
+    // Toggle Dark Mode and Save Preference
+    function toggleTheme() {
+      const body = document.body;
+      body.classList.toggle('dark-mode');
+      if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+      }
+    });
+    // Feedback Popup Functions
+    function openFeedback() {
+      document.getElementById('feedbackOverlay').style.display = 'block';
+      document.getElementById('feedbackPopup').style.display = 'block';
+    }
+    function closeFeedback() {
+      document.getElementById('feedbackOverlay').style.display = 'none';
+      document.getElementById('feedbackPopup').style.display = 'none';
+    }
+    // Coming Soon Popup Functions
+    function showComingSoon() {
+      document.getElementById('comingSoonOverlay').style.display = 'flex';
+      document.getElementById('comingSoonPopup').style.display = 'block';
+    }
+    function closeComingSoon() {
+      document.getElementById('comingSoonOverlay').style.display = 'none';
+      document.getElementById('comingSoonPopup').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

@@ -652,7 +652,7 @@
     <nav>
       <a href="#">Home</a>
       <a href="myTastings.html">My Tastings</a>
-      <a href="#" onclick="showComingSoon(); return false;">Coffee Map</a>
+      <a href="coffeeMap.html">Coffee Map</a>
       <div class="lineBreak"></div>
       <a href="#" onclick="openFeedback(); return false;">Feedback</a>
       <a href="#" onclick="showComingSoon(); return false;">Help Center</a>
@@ -664,7 +664,7 @@
   <div class="main-content">
     <div class="top-nav">
       <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
-      <div class="profile" onclick="showComingSoon()">
+      <div class="profile" onclick="window.location.href='profile.html';">
         <div>
           <span>John Doe</span>
           <p>Coffee Master</p>
@@ -741,7 +741,7 @@
       <h2>Feedback</h2>
       <button class="close-btn" onclick="closeFeedback()">×</button>
     </div>
-    <form id="feedbackForm" action="https://formsubmit.co/littlejjgill@gmail.com" method="POST">
+    <form id="feedbackForm" action="https://submit-form.com/FVNiq1HKl">
       <label for="feedbackName">Name</label>
       <input type="text" id="feedbackName" name="feedbackName" required>
       
@@ -829,7 +829,7 @@
       const addCoffeeMapBtn = document.getElementById('coffeeMap');
       if (addCoffeeMapBtn) {
         addCoffeeMapBtn.addEventListener('click', function () {
-          showComingSoon();
+          window.location.href = 'coffeeMap.html';
         });
       }
   
